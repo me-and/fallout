@@ -66,7 +66,7 @@ def chain_moves(depth, seq, state, score):
     new_chains = [(seq, state, score)]
     for dweller, dest, diff in available_moves(state):
         new_seq = seq.copy()
-        new_seq.append((dweller, state[dweller], dest))
+        new_seq.append((dweller, state[dweller], dest, diff))
 
         new_state = state.copy()
         new_state[dweller] = dest
