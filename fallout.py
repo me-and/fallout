@@ -28,6 +28,18 @@ def read_dweller(string):
 
 
 def state_from_file(filename='dwellers.txt'):
+    # File should be a list of dwellers, one per line, in the following format:
+    #
+    #     <name> <S><P><E><C><I><A><L><currentroom>
+    #
+    # Where the name is basically any string by which to identify the dweller,
+    # the SPECIAL scores are the single unbuffed digit score, with a score of
+    # "10" represented as "0", and the current room as the letter of the stat
+    # for the training room they're currently in.
+    #
+    # The whitespace separating the name from the stats and room can be any
+    # single character other than a newline; a space or a tab is the obvious
+    # choice.
     state = {}
     with open(filename) as f:
         for line in f:
