@@ -87,11 +87,12 @@ def chain_moves(depth, seq, state, score):
 def best_chain(depth, state):
     options = chain_moves(depth, [], state, 0)
 
-    best_score = -1
-    best_moves = None
+    best_score = 0
+    best_moves = []
 
     for moves, state, score in options:
-        if score <= best_score:
+        if (score < best_score or
+                (score == best_score and len(moves) >= len(best_moves))):
             continue
 
         keep = True
