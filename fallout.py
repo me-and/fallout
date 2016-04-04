@@ -2,7 +2,7 @@
 
 import itertools
 
-ROOMS = {r: 4 for r in 'SPECIAL'}
+ROOMS = {r: 6 for r in 'SPECIAL'}
 ROOM_IDX = {r: idx for idx, r in enumerate('SPECIAL')}
 
 class Dweller(object):
