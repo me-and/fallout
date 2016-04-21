@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import itertools
+import sys
 
 ROOMS = {r: 6 for r in 'SPECIAL'}
 ROOM_IDX = {r: idx for idx, r in enumerate('SPECIAL')}
@@ -139,3 +140,14 @@ def state_to_file(state, filename='dwellers.txt'):
                                                           stats['A'],
                                                           stats['L'],
                                                           room))
+
+if __name__ == '__main__':
+    depth = int(sys.argv[1])
+    moves, score, state = best_chain(depth, state_from_file())
+    for dweller, src, dst, mscore in moves:
+        print('{}: {} -> {} ({})'.format(dweller.name,
+                                         src,
+                                         dst,
+                                         mscore))
+    print('Total: {}'.format(score))
+    state_to_file(state)
