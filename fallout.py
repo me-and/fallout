@@ -119,3 +119,21 @@ def best_chain(depth, state):
         best_moves = moves
 
     return best_moves, best_score
+
+def state_to_file(state, filename='dwellers.txt'):
+    with open(filename, 'w') as fileobj:
+        for dweller in sorted(state, key=lambda x: x.name):
+            room = state[dweller]
+            stats = dweller.stats.copy()
+            for stat in stats:
+                if stats[stat] == 10:
+                    stats[stat] = 0
+            fileobj.write('{}\t{}{}{}{}{}{}{}{}\n'.format(dweller.name,
+                                                          stats['S'],
+                                                          stats['P'],
+                                                          stats['E'],
+                                                          stats['C'],
+                                                          stats['I'],
+                                                          stats['A'],
+                                                          stats['L'],
+                                                          room))
