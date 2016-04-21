@@ -104,17 +104,21 @@ def best_chain(depth, state):
     best_moves = []
     best_state = state
 
+    for dweller in best_state:
+        if dweller.stats[best_state[dweller]] == 10:
+            best_score -= 100
+
     for moves, state, score in options:
         if (score < best_score or
                 (score == best_score and len(moves) >= len(best_moves))):
             continue
 
-        keep = True
         for dweller in state:
             if dweller.stats[state[dweller]] == 10:
-                keep = False
-                break
-        if not keep:
+                score -= 100
+
+        if (score < best_score or
+                (score == best_score and len(moves) >= len(best_moves))):
             continue
 
         best_score = score
