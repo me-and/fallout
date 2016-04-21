@@ -101,6 +101,7 @@ def best_chain(depth, state):
 
     best_score = 0
     best_moves = []
+    best_state = state
 
     for moves, state, score in options:
         if (score < best_score or
@@ -117,8 +118,9 @@ def best_chain(depth, state):
 
         best_score = score
         best_moves = moves
+        best_state = state
 
-    return best_moves, best_score
+    return best_moves, best_score, best_state
 
 def state_to_file(state, filename='dwellers.txt'):
     with open(filename, 'w') as fileobj:
